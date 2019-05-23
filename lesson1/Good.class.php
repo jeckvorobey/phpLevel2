@@ -45,10 +45,10 @@ class Good
 
     public function init()
     {
-        echo '<div class="product">';
-        echo '<div class="author">Автор книги: '.$this->author.' </div>';
-        echo '<div class="title">Название: '.$this->title.' </div>';
-        echo '<div class="price">Стоимость: '.$this->price.' руб. </div>';
+        echo '<div class="product" style="margin:20px">';
+        echo '<div class="author"><strong>Автор книги:</strong> '.$this->author.' </div>';
+        echo '<div class="title"><strong>Название:</strong> '.$this->title.' </div>';
+        echo '<div class="price"><strong>Стоимость:</strong> '.$this->price.' руб. </div>';
         echo '</div>';
     }
 }

@@ -8,7 +8,7 @@ class ExtGood extends Good
 
     public function __construct($author, $title, $price, $isbn, $anotation)
     {
-        parent:: __construct($author, $title, $price);
+        parent::__construct($author, $title, $price);
         $this->setIsbn($isbn);
         $this->setAnotation($anotation);
     }
@@ -33,14 +33,14 @@ class ExtGood extends Good
         $this->anotation = $anotation;
     }
 
-    /*public function init()
+    public function init()
     {
-        echo '<div class="product">';
-        echo '<div class="author">Автор книги: '.$this->author.' </div>';
-        echo '<div class="title">Название: '.$this->title.' </div>';
-        echo '<div class="title">ISBN: '.$this->isbn.' </div>';
-        echo '<div class="title">Анотация к книге: '.$this->anotation.' </div>';
-        echo '<div class="price">Стоимость: '.$this->price.' руб. </div>';
+        echo '<div class="product" style="margin:20px">';
+        echo '<div class="author"><strong>Автор книги:</strong> '.$this->author.' </div>';
+        echo '<div class="title"><strong>Название:</strong> '.$this->title.' </div>';
+        echo '<div class="title"><strong>ISBN:</strong> '.$this->isbn.' </div>';
+        echo '<div class="title"><strong>Анотация к книге:</strong> '.$this->anotation.' </div>';
+        echo '<div class="price"><strong>Стоимость:</strong> '.$this->price.' руб. </div>';
         echo '</div>';
-    }*/
+    }
 }
