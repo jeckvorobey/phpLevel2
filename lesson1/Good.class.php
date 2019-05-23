@@ -48,7 +48,7 @@ class Good
         echo '<div class="product">';
         echo '<div class="author">Автор книги: '.$this->author.' </div>';
         echo '<div class="title">Название: '.$this->title.' </div>';
-        echo '<div class="price">Стоимость: '.$this->price.' </div>';
+        echo '<div class="price">Стоимость: '.$this->price.' руб. </div>';
         echo '</div>';
     }
 }
