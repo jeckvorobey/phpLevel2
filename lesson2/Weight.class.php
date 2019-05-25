@@ -16,22 +16,22 @@ class WeightGood extends Good
 
     public function setWeight($weight)
     {
-        $this->weight = $weight;
+        return $this->weight = $weight;
     }
 
     public function getWeight()
     {
-        $this->weight;
+        return $this->weight;
     }
 
     public function setPriceFor1Kg($priceFor1Kg)
     {
-        $this->priceFor1Kg = $priceFor1Kg;
+        return  $this->priceFor1Kg = $priceFor1Kg;
     }
 
     public function getPriceFor1Kg()
     {
-        $this->priceFor1Kg;
+        return  $this->priceFor1Kg;
     }
 
     public function price()

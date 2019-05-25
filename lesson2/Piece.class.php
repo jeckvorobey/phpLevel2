@@ -16,22 +16,22 @@ class PieceGood extends Good
 
     public function setCount($count)
     {
-        $this->count = $count;
+       return $this->count = $count;
     }
 
     public function getCount()
     {
-        $this->count;
+       return $this->count;
     }
 
     public function setPrice($price)
     {
-        $this->price = $price;
+       return $this->price = $price;
     }
 
     public function getPrice()
     {
-        $this->price;
+       return $this->price;
     }
 
     public function price()
