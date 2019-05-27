@@ -1,22 +1,35 @@
 <?php
 
+include 'Good.class.php';
 include 'Piece.class.php';
 
-class DigitalGood extends PieceGood
+class DigitalGood extends Good
 {
+    private $count;
+
     public function __construct($name, $description, $costPrice, $count)
     {
-        parent::__construct($name, $description, $costPrice, $count);
+        parent::__construct($name, $description, $costPrice);
+    }
+
+    public function setCount($count)
+    {
+        return $this->count = $count;
+    }
+
+    public function getCount()
+    {
+        return $this->count;
     }
 
     public function price()
     {
-        return ($this->getPrice() / 2) * $this->getCount();
+        return (Piece::getPrice() / 2) * $this->$count;
     }
 
     public function income()
     {
-        return ($this->price() / 2) - ($this->getCostPrice() * $this->getCount());
+        return (Piece::price() / 2) - ($this->getCostPrice() * $this->$count);
     }
 
     public function render()
