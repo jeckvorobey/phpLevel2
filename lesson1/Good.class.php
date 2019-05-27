@@ -3,8 +3,8 @@
 class Good
 {
     private $author;
-    private $ttile;
-    private $prise;
+    private $title;
+    private $price;
 
     public function __construct($author, $title, $price)
     {

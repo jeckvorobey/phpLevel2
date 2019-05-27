@@ -36,11 +36,11 @@ class ExtGood extends Good
     public function init()
     {
         echo '<div class="product" style="margin:20px">';
-        echo '<div class="author"><strong>Автор книги:</strong> '.$this->author.' </div>';
-        echo '<div class="title"><strong>Название:</strong> '.$this->title.' </div>';
+        echo '<div class="author"><strong>Автор книги:</strong> '.$this->getAuthor().' </div>';
+        echo '<div class="title"><strong>Название:</strong> '.$this->getTitle().' </div>';
         echo '<div class="title"><strong>ISBN:</strong> '.$this->isbn.' </div>';
         echo '<div class="title"><strong>Анотация к книге:</strong> '.$this->anotation.' </div>';
-        echo '<div class="price"><strong>Стоимость:</strong> '.$this->price.' руб. </div>';
+        echo '<div class="price"><strong>Стоимость:</strong> '.$this->getPrice().' руб. </div>';
         echo '</div>';
     }
 }
