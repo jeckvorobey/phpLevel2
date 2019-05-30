@@ -8,7 +8,7 @@ try {
     $loader = new Twig_Loader_Filesystem('templates');
     $twig = new Twig_Environment($loader);
     $template = $twig->loadTemplate('gallery.tmpl');
-    $content = $template->render(['images' => $data]);
+    $content = $template->render($data);
     $result = $twig->loadTemplate('base.tmpl');
     echo $result->render(['content' => $content]);
 } catch (Exception $e) {
