@@ -3,7 +3,7 @@
 include 'models/Db.class.php';
 try {
     $db = new Db();
-    $sql = 'SELECT * FROM `Picture` WHERE id=3'.$id;
+    $sql = 'SELECT * FROM `Picture` WHERE id='.$id;
     $result = $db->query($sql);
     //print_r($result);
     $data = [];
