@@ -1,6 +1,6 @@
 <?php
 
-include '../models/Db.class.php';
+include 'models/Db.class.php';
 try {
     $db = new Db();
     $sql = 'SELECT * FROM `Picture` WHERE id='.$id;
@@ -9,4 +9,3 @@ try {
 } catch (Exception $e) {
     die('ERROR: '.$e->get_message());
 }
-//print_r($data);

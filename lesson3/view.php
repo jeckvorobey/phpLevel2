@@ -9,10 +9,10 @@ if (isset($_GET['id'])) {
         $loader = new Twig_Loader_Filesystem('templates');
         $twig = new Twig_Environment($loader);
         $template = $twig->loadTemplate('picture.tmpl');
-        $content = $template->render($data);
+        $content = $template->render(['image' => $data]);
         // echo $content;
         $result = $twig->loadTemplate('base.tmpl');
-        echo $result->render($content);
+        echo $result->render(['content' => $content]);
     } catch (Exception $e) {
         die('ERROR: '.$e->get_message());
     }
