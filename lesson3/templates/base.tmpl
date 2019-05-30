@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Gallery</title>
+        <link rel="stylesheet" href="../style/style.css">
+    </head>
+
+    <body>
+        <header>
+            <div class="header">
+                <h1 class="title">
+                Header page!
+            </h1>
+            </div>
+        </header>
+        <main>
+            <div class="gallery">
+                <ul class="list-img">
+                    {% for item in images%}
+                        <li>
+                            <a href="view.php">
+                                <img src="{{ item.src_small }}{{item.name}}" alt="picture{{item.name}}">
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <div class="footer">
+            Ни чьи права не нарушены!
+        </div>
+        </footer>
+    </body>
+
+</html>
