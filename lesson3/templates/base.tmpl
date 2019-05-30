@@ -18,17 +18,7 @@
             </div>
         </header>
         <main>
-            <div class="gallery">
-                <ul class="list-img">
-                    {% for item in images%}
-                        <li>
-                            <a href="view.php">
-                                <img src="{{ item.src_small }}{{item.name}}" alt="picture{{item.name}}">
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+            {{ content }}
         </main>
         <footer>
             <div class="footer">
