@@ -1,0 +1,27 @@
+:root {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 100px;
+    background-color: lightgrey;
+}
+
+.title {
+    text-align: center;
+    line-height: 3em;
+}
+
+.footer {
+    padding-right: 1em;
+    height: 60px;
+    text-align: right;
+    line-height: 3em;
+    background-color: gray;
+}

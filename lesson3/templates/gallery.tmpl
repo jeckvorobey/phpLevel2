@@ -1,0 +1,11 @@
+<div class="gallery">
+    <ul class="list-img">
+        {% for item in images %}
+            <li>
+                <a href="view.php?id={{item.id}}" target="_blank">
+                    <img src="{{item.src}}{{item.name}}" alt="picture{{item.name}}">
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
