@@ -25,11 +25,11 @@ include '../controllers/goods.php';
     echo '<h4>'.$good['name'].'</h4>';
     echo '<p class="description">'.$good['description'].'</p>';
     echo '<p class="price">'.$good['price'].' руб.</p>';
-    echo '<button class="buy" type="submit">В корзину</button>';
+    echo '<button class="buy" type="button" value="'.$good['id'].'">В корзину</button>';
     echo '</div></div>';
 } ?>
         </div>
-        <p class="more"><button class="more-btn" type="submit">Посмотреть ещё...</button></p>
+        <p class="more"><button class="more-btn" type="button">Посмотреть ещё...</button></p>
     </main>
     <footer class="footer">
         <p> &copy; Все права защищены!</p>
