@@ -23,8 +23,9 @@ body {
 }
 
 .product {
-    width: 200px;
+    width: 250px;
     height: 380px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     border: 2px solid blueviolet;
@@ -50,18 +51,21 @@ body {
 }
 
 .buy {
-    margin-left: 110px;
+    margin-left: 160px;
 }
 
-.more a {
+.more-btn {
     display: block;
-    text-align: center;
-    text-decoration: none;
+    background-color: white;
+    border: none;
+    margin: 0 auto;
 }
 
-.more a:hover {
-    color: rgb(110, 161, 58);
+.more-btn:hover {
+    color: blue;
+    cursor: pointer;
 }
+
 
 .footer {
     width: 100%;

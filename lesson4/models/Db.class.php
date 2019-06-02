@@ -18,7 +18,7 @@ class Db
         return $this;
     }
 
-    public function execute($sql)
+    public function exec($sql)
     {
         $sth = $this->link->prepare($sql);
 
