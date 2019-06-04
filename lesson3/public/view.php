@@ -2,8 +2,8 @@
 
 if (isset($_GET['id'])) {
     $id = (int) $_GET['id'];
-    require 'controllers/picture.php';
-    require_once 'Twig/Autoloader.php';
+    require '../controllers/picture.php';
+    require_once '../Twig/Autoloader.php';
     Twig_Autoloader::register();
     try {
         $loader = new Twig_Loader_Filesystem('templates');

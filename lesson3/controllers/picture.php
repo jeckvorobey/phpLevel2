@@ -13,7 +13,7 @@ try {
             'name' => $result[0]['name'],
         ];
     }
-
+    unset($db);
     // print_r($data);
 } catch (Exception $e) {
     die('ERROR: '.$e->get_message());
