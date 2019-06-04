@@ -20,7 +20,7 @@ try {
 
         private function init()
         {
-            $sql = 'SELECT `id`, `name`, `description`, `price` FROM `goods` LIMIT 6';
+            $sql = 'SELECT `id`, `name`, `description`, `price` FROM `goods` WHERE id <= 6';
             $this->goods = $this->db->query($sql);
 
             return $this->goods;
@@ -29,7 +29,8 @@ try {
         public function moreGoods($lastItem)
         {
             $lastItem = (int) $lastItem;
-            $sql = 'SELECT `id`, `name`, `description`, `price` FROM `goods` LIMIT '.$lastItem.',6';
+            $endId = $lastItem + 6;
+            $sql = 'SELECT `id`, `name`, `description`, `price` FROM `goods` WHERE id > '.$lastItem.' and id <= '.$endId;
             $more = $this->db->query($sql);
 
             return $more;
