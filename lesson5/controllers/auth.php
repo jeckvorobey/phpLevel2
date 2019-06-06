@@ -15,6 +15,7 @@ try {
         $_SESSION['login'] = $user[0]['login'];
         $_SESSION['pass'] = $user[0]['pass'];
         $_SESSION['role'] = $user[0]['role'];
+        $data->setSession($_SESSION);
         header('Location: ../public/index.php?act=successful');
     }
 } catch (Exception $e) {

@@ -5,10 +5,21 @@ include_once '../model/Db.class.php';
 class User
 {
     private $db;
+    private $session;
 
     public function __construct()
     {
         $this->init();
+    }
+
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    public function setSession($arrSession)
+    {
+        $this->session = $arrSession;
     }
 
     private function init()

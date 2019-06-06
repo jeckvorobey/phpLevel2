@@ -22,7 +22,6 @@ class Index
 
     public function successful()
     {
-        print_r($_SESSION);
         $template = $this->twig->loadTemplate('personalArea.tmpl');
         $content = $template->render(['login' => $_SESSION['login'], 'role' => $_SESSION['role']]);
         $result = $this->twig->loadTemplate('index.tmpl');
