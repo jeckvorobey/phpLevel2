@@ -2,11 +2,11 @@
 
 if (isset($_GET['id'])) {
     $id = (int) $_GET['id'];
-    include '../controllers/picture.php';
-    require_once '../Twig/Autoloader.php';
+    require 'controllers/picture.php';
+    require_once 'Twig/Autoloader.php';
     Twig_Autoloader::register();
     try {
-        $loader = new Twig_Loader_Filesystem('../templates');
+        $loader = new Twig_Loader_Filesystem('templates');
         $twig = new Twig_Environment($loader);
         $template = $twig->loadTemplate('picture.tmpl');
         $content = $template->render($data);
