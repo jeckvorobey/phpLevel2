@@ -1,11 +1,12 @@
 <?php
-
+session_start();
 include '../model/User.class.php';
 try {
+    $data = new User();
     if (isset($_POST['entry'])) {
         $login = (!empty($_POST['login'])) ? $_POST['login'] : '';
         $pass = (!empty($_POST['pass'])) ? $_POST['pass'] : '';
-        $data = new User();
+       
         $user = $data->auth($login, $pass);
         if (!$user) {
             header('Location: ../public/index.php?act=error');
@@ -14,7 +15,6 @@ try {
         header('Location: ../public/index.php?act=successful');
     }
     if (isset($_GET['exit'])) {
-        $data = new User();
         $data->exit();
         header('Location: ../public/index.php');
     }

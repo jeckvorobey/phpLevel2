@@ -5,7 +5,6 @@ include_once '../model/Db.class.php';
 class User
 {
     private $db;
-    private $session;
 
     public function __construct()
     {
@@ -36,7 +35,6 @@ class User
         $_SESSION['login'] = $user[0]['login'];
         $_SESSION['pass'] = $user[0]['pass'];
         $_SESSION['role'] = $user[0]['role'];
-        $this->session = $_SESSION;
         unset($this->db);
 
         return $user;
@@ -48,7 +46,6 @@ class User
         unset($_SESSION['login']);
         unset($_SESSION['pass']);
         unset($_SESSION['role']);
-        unset($this->session);
         session_destroy();
     }
 }
