@@ -32,6 +32,7 @@ class User
         $sql = 'SELECT * FROM `users` WHERE login=? AND pass=?';
         $arrData = [$login, $pass];
         $user = $this->db->query($sql, $arrData);
+        unset($this->db);
 
         return $user;
     }
