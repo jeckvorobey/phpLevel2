@@ -2,7 +2,7 @@
 
 class Index
 {
-    protected $twig;
+    private $twig;
 
     public function __construct()
     {
@@ -34,15 +34,5 @@ class Index
         $content = $template->render(['error' => 1]);
         $result = $this->twig->loadTemplate('index.tmpl');
         echo $result->render(['title' => 'Вход на сайт', 'content' => $content]);
-    }
-
-    public function exit()
-    {
-        unset($_SESSION['userId']);
-        unset($_SESSION['login']);
-        unset($_SESSION['pass']);
-        unset($_SESSION['role']);
-        session_destroy();
-        header('Location: ../public/index.php');
     }
 }

@@ -32,6 +32,11 @@ class User
         $sql = 'SELECT * FROM `users` WHERE login=? AND pass=?';
         $arrData = [$login, $pass];
         $user = $this->db->query($sql, $arrData);
+        $_SESSION['userId'] = $user[0]['id_user'];
+        $_SESSION['login'] = $user[0]['login'];
+        $_SESSION['pass'] = $user[0]['pass'];
+        $_SESSION['role'] = $user[0]['role'];
+        $this->session = $_SESSION;
         unset($this->db);
 
         return $user;
@@ -39,5 +44,11 @@ class User
 
     public function exit()
     {
+        unset($_SESSION['userId']);
+        unset($_SESSION['login']);
+        unset($_SESSION['pass']);
+        unset($_SESSION['role']);
+        unset($this->session);
+        session_destroy();
     }
 }

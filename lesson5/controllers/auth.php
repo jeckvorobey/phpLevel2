@@ -11,12 +11,12 @@ try {
             header('Location: ../public/index.php?act=error');
             exit;
         }
-        $_SESSION['userId'] = $user[0]['id_user'];
-        $_SESSION['login'] = $user[0]['login'];
-        $_SESSION['pass'] = $user[0]['pass'];
-        $_SESSION['role'] = $user[0]['role'];
-        $data->setSession($_SESSION);
         header('Location: ../public/index.php?act=successful');
+    }
+    if (isset($_GET['exit'])) {
+        $data = new User();
+        $data->exit();
+        header('Location: ../public/index.php');
     }
 } catch (Exception $e) {
     echo 'Ошибка: ',  $e->getMessage(), "\n";
