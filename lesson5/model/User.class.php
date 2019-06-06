@@ -27,6 +27,5 @@ class User
 
     public function exit()
     {
-        
     }
 }

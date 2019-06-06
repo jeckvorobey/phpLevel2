@@ -1,0 +1,9 @@
+<div class="area">
+    <p class="greeting">
+        Добро пожаловать
+        {{ login }}
+    </p>
+    {% if role == 1 %}
+        <p>Вы администратор</p>
+    {% endif %}
+</div>
