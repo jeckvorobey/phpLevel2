@@ -11,7 +11,7 @@ class Db
 
     private function connect()
     {
-        $config = require_once 'config.php';
+        $config = require_once '../configuration/dbConfig.php';
         $dsn = 'mysql:host='.$config['host'].';dbname='.$config['db_name'].';charset='.$config['charset'];
         $this->link = new PDO($dsn, $config['username'], $config['password']);
 
