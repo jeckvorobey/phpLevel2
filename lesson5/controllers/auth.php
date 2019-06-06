@@ -20,4 +20,3 @@ try {
 } catch (Exception $e) {
     echo 'Ошибка: ',  $e->getMessage(), "\n";
 }
-//header('Location: ../public/index.php?errorAuth');
