@@ -1,0 +1,10 @@
+<div class="area">
+    <p class="greeting">
+        Добро пожаловать
+        {{ login }}
+    </p>
+    {% if role == 1 %}
+        <p>Вы администратор</p>
+    {% endif %}
+    <a href="../controllers/auth.php?exit">Выход</a>
+</div>

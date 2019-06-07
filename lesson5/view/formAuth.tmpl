@@ -1,0 +1,13 @@
+<div class="wrap-form">
+    {% if error == 1 %}
+        <p class="error">ошибка автоизации!</p>
+    {% endif %}
+    <h1 class="form-auth">Вход:</h1>
+    <form action="../controllers/auth.php" class="form-auth" method="POST">
+        <label for="login">Введите ваш логин:</label>
+        <input name="login" type="text" value="">
+        <label for="pass">Введите ваш пароль:</label>
+        <input name="pass" type="password" value="">
+        <input name="entry" type="submit" value="Войти">
+    </form>
+</div>
