@@ -5,15 +5,14 @@ class IndexController extends Controller
     public $view = 'index';
     public $title;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->title .= ' | Главная';
     }
-	
-	function index(){
-		return "test";
-	}
 
-
+    public function index()
+    {
+        return 'test';
+    }
 }

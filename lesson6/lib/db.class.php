@@ -42,7 +42,7 @@ class db
     /*
      * Выполнить запрос к БД
      */
-    public function Query($query, $params = array())
+    public function Query($query, $params = [])
     {
         $res = $this->db->prepare($query);
         $res->execute($params);
@@ -52,7 +52,7 @@ class db
     /*
      * Выполнить запрос с выборкой данных
      */
-    public function Select($query, $params = array())
+    public function Select($query, $params = [])
     {
         $result = $this->Query($query, $params);
         if ($result) {

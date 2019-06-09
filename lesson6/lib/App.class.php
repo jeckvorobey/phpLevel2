@@ -18,14 +18,14 @@ class App
     {
         $url = explode('/', $url);
         if (!empty($url[0])) {
-            $_GET['page'] = $url[0]; //����� ����� ������ �����������
+            $_GET['page'] = $url[0];
             if (isset($url[1])) {
                 if (is_numeric($url[1])) {
                     $_GET['id'] = $url[1];
                 } else {
-                    $_GET['action'] = $url[1]; //����� ����� ������
+                    $_GET['action'] = $url[1];
                 }
-                if (isset($url[2])) {//���������� �������� ��� ������ �����������
+                if (isset($url[2])) {
                     $_GET['id'] = $url[2];
                 }
             }
