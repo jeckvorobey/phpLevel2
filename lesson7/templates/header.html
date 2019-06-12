@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script>
+    <script src="/js/main.js" type="text/javascript"></script>
+    <script src="/js/category.js" type="text/javascript"></script>
+    <body>
+        <ul>
+            {% for category in categories %}
+                <li>
+                    <a href="../public/index.php?path={{ category.src }}/{{ category.id_category }}" link="{{ category.id_category }}" class="category-link">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
