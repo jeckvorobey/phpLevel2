@@ -9,7 +9,7 @@ $(document).ready(function () {
             url: "../controller/BasketController.class.php",
             type: "POST",
             data: {
-                id_good: +(e.target.value),
+                idGood: +(e.target.value),
                 quantity: 1
             },
             error: function () {

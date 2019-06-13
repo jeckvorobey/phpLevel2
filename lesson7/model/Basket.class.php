@@ -70,6 +70,8 @@ class Basket extends Model
                     '.$this->is_in_order.'
                   )';
         db::getInstance()->Query($query);
+
+        return true;
     }
 
     public function basket_all($userId)

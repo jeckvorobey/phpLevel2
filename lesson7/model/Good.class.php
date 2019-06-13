@@ -35,11 +35,11 @@ class Good extends Model
             ['status' => Status::Active, 'category' => $categoryId]);
     }
 
-    public function getGoodInfo()
+    public function getGoodInfo($idGood)
     {
         return db::getInstance()->Select(
             'SELECT * FROM goods WHERE id_good = :id_good',
-            ['id_good' => (int) $this->id_good]);
+            ['id_good' => (int) $idGood]);
     }
 
     public static function getGoodPrice($id_good)

@@ -26,4 +26,17 @@ class BasketController extends Controller
             ['data' => $basket];
         }
     }
+
+    public function addBasket()
+    {
+        if (isset($_POST['idGood'])) {
+            $good = Good::getGoodInfo($_POST['idGood']);
+            Basket::setIdGood($good['id_good']);
+            Basket::setPrice($good['price']);
+            Basket::setCount($_POST['quantity']);
+            Basket::setUser($this->id_user);
+            $data = Basket::save();
+            echo json_encode($data);
+        }
+    }
 }

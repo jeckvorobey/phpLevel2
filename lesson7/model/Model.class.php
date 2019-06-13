@@ -1,14 +1,14 @@
 <?php
 
-abstract class Model {
-
+abstract class Model
+{
     protected static $table;
     protected static $properties = [
         'id' => [
             'type' => 'int',
             'autoincrement' => true,
             'readonly' => true,
-            'unsigned' => true
+            'unsigned' => true,
         ],
         'created_at' => [
             'type' => 'datetime',
@@ -21,8 +21,8 @@ abstract class Model {
         'status' => [
             'type' => 'int',
             'size' => 2,
-            'unsigned' => true
-        ]
+            'unsigned' => true,
+        ],
     ];
 
     public function __construct(array $values)
@@ -35,41 +35,43 @@ abstract class Model {
     }
 
     /**
-     * Вызывается в конструкторе и при генерации, чтобы дополнить базовый набор свойств
+     * Вызывается в конструкторе и при генерации, чтобы дополнить базовый набор свойств.
      */
     protected static function setProperties()
     {
         return true;
     }
 
-    public final static function generate()
+    final public static function generate()
     {
-        if (self::tableExists()) throw new Exception('Table already exists');
+        if (self::tableExists()) {
+            throw new Exception('Table already exists');
+        }
         static::setProperties();
-        $query = 'CREATE TABLE ' . static::$table . ' (';
+        $query = 'CREATE TABLE '.static::$table.' (';
         foreach (static::$properties as $property => $params) {
             if (!isset($params['type'])) {
-                throw new Exception('Property ' . $property . 'has no type');
+                throw new Exception('Property '.$property.'has no type');
             }
-            $query .= ' `' . $property . '`';
+            $query .= ' `'.$property.'`';
 
-            $query .= ' ' . $params['type'];
-            if ( isset($params['size'])) {
-                $query .= '(' .$params['size'] .')';
+            $query .= ' '.$params['type'];
+            if (isset($params['size'])) {
+                $query .= '('.$params['size'].')';
             }
 
-            if( isset ($params['unsigned']) && $params['unsigned']) {
+            if (isset($params['unsigned']) && $params['unsigned']) {
                 $query .= ' UNSIGNED';
             }
 
-            if( isset ($params['autoincrement']) && $params['autoincrement']) {
+            if (isset($params['autoincrement']) && $params['autoincrement']) {
                 $query .= ' AUTO_INCREMENT';
             }
-            $query .= ',' . "\n";
-
+            $query .= ','."\n";
         }
         $query .= ' PRIMARY KEY (`id`))';
         db::getInstance()->Query($query);
+
         return true;
     }
 
@@ -78,12 +80,12 @@ abstract class Model {
         $this->checkProperty($name);
         $return = null;
 
-        switch(static::$property['type']) {
+        switch (static::$property['type']) {
             case 'int':
-                return (int)$this->$name;
+                return (int) $this->$name;
                 // break;
             default:
-                return (string)$this->$name;
+                return (string) $this->$name;
                 // break;
         }
     }
@@ -91,12 +93,12 @@ abstract class Model {
     public function __set($name, $value)
     {
         $this->checkProperty($name);
-        switch(static::$properties[$name]['type']) {
+        switch (static::$properties[$name]['type']) {
             case 'int':
-                $this->$name = (int)$value;
+                $this->$name = (int) $value;
                 break;
             default:
-                $this->$name = (string)$value;
+                $this->$name = (string) $value;
                 break;
         }
         if (isset(static::$properties[$name]['size'])) {
@@ -104,19 +106,18 @@ abstract class Model {
         }
     }
 
-    protected final static function tableExists()
+    final protected static function tableExists()
     {
-        return count(db::getInstance()->select('SHOW TABLES LIKE "' . static::$table . '"')) > 0;
+        return count(db::getInstance()->select('SHOW TABLES LIKE "'.static::$table.'"')) > 0;
     }
 
-    protected final function checkProperty($name)
+    final protected function checkProperty($name)
     {
         if (!isset(static::$properties[$name])) {
-            throw new Exception('Undefined property ' . $name);
+            throw new Exception('Undefined property '.$name);
         }
         if (!isset(static::$properties[$name]['type'])) {
-            throw new Exception('Undefined type for property ' . $name);
+            throw new Exception('Undefined type for property '.$name);
         }
     }
 }
-?>
