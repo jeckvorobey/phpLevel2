@@ -1,29 +1,30 @@
 <?php
 
-class Good extends Model {
+class Good extends Model
+{
     protected static $table = 'goods';
 
     protected static function setProperties()
     {
         self::$properties['id_good'] = [
-            'type' => 'int'
+            'type' => 'int',
         ];
 
         self::$properties['name'] = [
             'type' => 'varchar',
-            'size' => 512
+            'size' => 512,
         ];
 
         self::$properties['price'] = [
-            'type' => 'float'
+            'type' => 'float',
         ];
 
         self::$properties['description'] = [
-            'type' => 'text'
+            'type' => 'text',
         ];
 
         self::$properties['category'] = [
-            'type' => 'int'
+            'type' => 'int',
         ];
     }
 
@@ -34,17 +35,27 @@ class Good extends Model {
             ['status' => Status::Active, 'category' => $categoryId]);
     }
 
-    public function getGoodInfo(){
+    public function getGoodInfo()
+    {
         return db::getInstance()->Select(
             'SELECT * FROM goods WHERE id_good = :id_good',
-            ['id_good' => (int)$this->id_good]);
+            ['id_good' => (int) $this->id_good]);
     }
 
-    public static function getGoodPrice($id_good){
+    public static function getGoodPrice($id_good)
+    {
         $result = db::getInstance()->Select(
             'SELECT price FROM goods WHERE id_good = :id_good',
             ['id_good' => $id_good]);
 
-        return (isset($result[0]) ? $result[0]['price'] : null);
+        return isset($result[0]) ? $result[0]['price'] : null;
+    }
+
+    public function getGoodsAll($idGood = 0)
+    {
+        $lastIdGood = $idGood + 6;
+
+        return db::getInstance()->Select('SELECT id_good, name, price FROM `goods` WHERE id_good > :idGood AND id_good <= :lastIdGood',
+        ['idGood' => $idGood, 'lastIdGood' => $lastIdGood]);
     }
 }
