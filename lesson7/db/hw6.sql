@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Июн 10 2019 г., 16:24
+-- Время создания: Июн 13 2019 г., 15:52
 -- Версия сервера: 5.7.26-0ubuntu0.18.04.1
 -- Версия PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -31,6 +31,7 @@ CREATE TABLE `basket` (
   `id_user` int(11) NOT NULL,
   `id_good` int(11) NOT NULL,
   `price` double NOT NULL,
+  `count` int(4) NOT NULL,
   `is_in_order` tinyint(4) NOT NULL,
   `id_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -45,6 +46,7 @@ CREATE TABLE `categories` (
   `id_category` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `src` varchar(20) NOT NULL DEFAULT 'index.php',
   `parent_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -52,13 +54,13 @@ CREATE TABLE `categories` (
 -- Дамп данных таблицы `categories`
 --
 
-INSERT INTO `categories` (`id_category`, `status`, `name`, `parent_id`) VALUES
-(1, 1, 'категория 1', 0),
-(2, 1, 'категория 2', 1),
-(3, 1, 'категория 3', 1),
-(4, 1, 'категория 4', 0),
-(5, 1, 'категория 5', 2),
-(6, 1, 'категория 6', 5);
+INSERT INTO `categories` (`id_category`, `status`, `name`, `src`, `parent_id`) VALUES
+(1, 1, 'Главная', 'index', 0),
+(2, 1, 'Корзина', 'basket/render', 0),
+(3, 1, 'Каталог', 'catalog/render', 0),
+(4, 0, 'категория 4', '', 0),
+(5, 0, 'категория 5', '', 0),
+(6, 0, 'категория 6', '', 0);
 
 -- --------------------------------------------------------
 
