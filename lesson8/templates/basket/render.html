@@ -1,0 +1,11 @@
+{% include 'header.html' %}
+
+<h1>Корзина</h1>
+<div class="basket">
+    {% if content_data.data == 0 %}
+        <p>Товаров в корзине нет</p>
+    {% else %}
+        <p>{{ content_data.data }}</p>
+    {% endif %}
+</div>
+{% include 'footer.html' %}
