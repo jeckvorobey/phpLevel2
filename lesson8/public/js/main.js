@@ -28,18 +28,17 @@ window.onload = () => {
     }
 
     renderProduct = dataArr => {
-        const catalog = document.querySelectorAll('.catalog');
+        const catalog = document.querySelector('.wrap-product');
         dataArr.forEach(elem => {
             let product = document.createElement('div');
             product.className = 'product';
             product.dataset['id'] = elem.id_good;
-            product.innerHTML += `<p><strong>ID товара: </strong>${elem.id_good}</p>`;
+            product.innerHTML += `<p><strong>ID товара: </strong>${elem.id_good}</p> `;
             product.innerHTML += `<p><strong>Наименование: </strong>${elem.name}</p>`;
             product.innerHTML += `<p><strong>Цена: </strong>${elem.price}</p>`;
             product.innerHTML += `<button class="btn-buy" value="${elem.id_good}">В корзину</button>`;
-            // catalog.appendChild(product);
-            console.dir(catalog);
-
+            catalog.append(product);
+            catalog.append(document.createElement('hr'));
         });
     }
 

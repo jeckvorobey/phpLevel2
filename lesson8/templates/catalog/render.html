@@ -1,30 +1,31 @@
 {% include 'header.html' %}
 <div class="catalog">
-    {% for item in content_data.data %}
-        <div class="product" data-id="{{item.id_good}}">
-            <p>
-                <strong>
+    <div class="wrap-product">
+        {% for item in content_data.data %}
+            <div class="product" data-id="{{item.id_good}}">
+                <p>
+                    <strong>
                 ID товара:
             </strong>
-                {{ item.id_good }}
-            </p>
-            <p>
-                <strong>
+                    {{ item.id_good }}
+                </p>
+                <p>
+                    <strong>
                 Наименование:
             </strong>
-                {{ item.name }}
-            </p>
-            <p>
-                <strong>
+                    {{ item.name }}
+                </p>
+                <p>
+                    <strong>
                 Цена:
             </strong>
-                {{ item.price }}
-            </p>
-            <button class="btn-buy" value="{{item.id_good}}">В корзину</button>
-        </div>
-        <hr>
-
-    {% endfor %}
+                    {{ item.price }}
+                </p>
+                <button class="btn-buy" value="{{item.id_good}}">В корзину</button>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
     <button id="more-btn">открыть ещё...</button>
 </div>
 {% include 'footer.html' %}
