@@ -7,8 +7,16 @@ class CatalogController extends Controller
 
     public function render()
     {
+        $this->title .= ' | Каталог';
         $catalog = Good::getGoodsAll();
-        //print_r($catalog);
+
+        return ['data' => $catalog];
+    }
+
+    public function moreGoods($lastId)
+    {
+        $catalog = Good::getGoodsAll($lastId);
+
         return ['data' => $catalog];
     }
 }

@@ -39,13 +39,13 @@ class App
             $controller = new $controllerName(); //new
 
             $data = [
-                'content_data' => $controller->$methodName($_GET),
+                'content_data' => $controller->$methodName($_GET['id']),
                 'title' => $controller->title,
                 'categories' => Category::getCategories(0),
             ];
 
-            $view = $controller->view.'/'.$methodName.'.html';
-            if (!isset($_GET['asAjax'])) {
+            if (!isset($_GET['a'])) {
+                $view = $controller->view.'/'.$methodName.'.html';
                 $loader = new Twig_Loader_Filesystem(Config::get('path_templates'));
                 $twig = new Twig_Environment($loader);
                 $template = $twig->loadTemplate($view);
