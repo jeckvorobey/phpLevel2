@@ -15,4 +15,9 @@ class IndexController extends Controller
     {
         return 'test';
     }
+
+    public function authError()
+    {
+        return ['data' => true];
+    }
 }

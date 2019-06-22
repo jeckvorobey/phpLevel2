@@ -1,5 +1,6 @@
 <?php
 
+//session_start();
 class UserController extends Controller
 {
     public $view = 'user';
@@ -10,13 +11,15 @@ class UserController extends Controller
         if (isset($_POST['entry'])) {
             $login = (!empty($_POST['login'])) ? trim(strip_tags($_POST['login'])) : '';
             $pass = (!empty($_POST['pass'])) ? trim(strip_tags($_POST['pass'])) : '';
-            $pass = User::hashPass($pass);
             $user = User::auth($login, $pass);
-            if(!$user) {
-                header('Location: ../public/index.php?path=index/autherr')
+            if (!$user) {
+                header('Location: ../public/index.php?path=index/authError');
+                exit;
             }
+            // $this->title .= ' | Личный кабинет';
         }
-        //$this->title .= ' | Личный кабинет';
+        if (isset($_POST['reg'])) {
+        }
     }
 
     public function newUser()

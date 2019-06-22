@@ -10,17 +10,17 @@
         <ul>
             {% for category in categories %}
                 <li>
-                    <a href="../public/index.php?path={{ category.src }}" link="{{ category.id_category }}"
-                class="category-link">{{ category.name }}</a>
+                    <a href="../public/index.php?path={{ category.src }}" link="{{ category.id_category }}" class="category-link">{{ category.name }}</a>
                 </li>
             {% endfor %}
         </ul>
-        <form class="form-auth" action="../public/index.php?path=user" method="POST">
+        <form action="../public/index.php?path=user" class="form-auth" method="POST">
             <label for="login">Введите ваш логин:</label>
-            <input type="text" name="login" value="">
+            <input name="login" type="text" value="">
             <label for="pass">Введите ваш пароль:</label>
-            <input type="password" name="pass" value="">
-            <input type="submit" name="entry" value="Войти">
-            <input type="submit" name="reg" value="Зарегистрироваться">
+            <input name="pass" type="password" value="">
+            <input name="entry" type="submit" value="Войти">
+            <input name="reg" type="submit" value="Зарегистрироваться">
         </form>
     </body>
+</html>
