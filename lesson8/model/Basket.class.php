@@ -77,7 +77,7 @@ class Basket extends Model
     public function basket_all($userId)
     {
         return db::getInstance()->Select(
-            'SELECT basket.id_user, basket.count, goods.name, goods.price  FROM `basket`  INNER JOIN `goods` on basket.id_good = goods.id_good WHERE basket.id_user = :userId',
+            'SELECT basket.id_user, basket.count, goods.name, goods.price  FROM `basket`  INNER JOIN `goods` on basket.id_good = goods.id_good WHERE basket.id_user = :userId AND basket.is_in_order = 0',
             ['userId' => $userId]);
     }
 }
