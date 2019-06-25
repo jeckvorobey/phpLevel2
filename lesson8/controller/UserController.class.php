@@ -16,7 +16,7 @@ class UserController extends Controller
                 header('Location: ../public/index.php?path=index/authError');
                 exit;
             }
-            // $this->title .= ' | Личный кабинет';
+            $this->title .= ' | Личный кабинет';
         }
         if (isset($_POST['reg'])) {
         }

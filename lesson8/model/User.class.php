@@ -2,6 +2,21 @@
 
 class User extends Model
 {
+    private $userEmail;
+    private $userPass;
+    private $userName;
+    private $userPhone;
+
+    public function setEmail($userEmail)
+    {
+        $this->userEmail = $userEmail;
+    }
+
+    public function getEmail()
+    {
+        return $this->userEmail;
+    }
+
     public function auth($login, $pass)
     {
         $pass = self::hashPass($pass);
