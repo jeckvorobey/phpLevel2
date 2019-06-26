@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>{{ title }}</title>
-    </head>
-    <script src="../public/js/main.js"></script>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
 
-    <body>
+<body>
+    <header>
         <ul>
             {% for category in categories %}
-                <li>
-                    <a href="../public/index.php?path={{ category.src }}" link="{{ category.id_category }}" class="category-link">{{ category.name }}</a>
-                </li>
+            <li>
+                <a href="../public/index.php?path={{ category.src }}" link="{{ category.id_category }}"
+                    class="category-link">{{ category.name }}</a>
+            </li>
             {% endfor %}
         </ul>
         <form action="../public/index.php?path=user" class="form-auth" method="POST">
-            <label for="login">Введите ваш логин:</label>
-            <input name="login" type="text" value="">
+            <label for="userEmail">Введите ваш e-mail:</label>
+            <input name="userEmail" type="text" value="">
             <label for="pass">Введите ваш пароль:</label>
             <input name="pass" type="password" value="">
             <input name="entry" type="submit" value="Войти">
             <input name="reg" type="submit" value="Зарегистрироваться">
         </form>
-    </body>
-</html>
+    </header>

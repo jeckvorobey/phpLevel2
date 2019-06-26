@@ -17,18 +17,48 @@ class User extends Model
         return $this->userEmail;
     }
 
-    public function auth($login, $pass)
+    public function setPass($userPass)
     {
-        $pass = self::hashPass($pass);
-
-        return db::getInstance()->Select('SELECT user.*, user_role.id_role FROM `user` INNER JOIN `user_role` ON user.id_user = user_role.id_user WHERE user.user_login = :login AND user.user_password = :pass', ['login' => $login, 'pass' => $pass]);
+        $this->userPass = $userPass;
     }
 
-    private function hashPass($pass)
+    public function setName($userName)
+    {
+        $this->userName = $userName;
+    }
+
+    public function getName()
+    {
+        return $this->userName;
+    }
+
+    public function setPhone($userPhone)
+    {
+        $this->userPhone = $userPhone;
+    }
+
+    public function getPhone()
+    {
+        return $this->userPhone;
+    }
+
+    public function auth($userEmail, $userPass)
+    {
+        $userPass = self::hashPass($userPass);
+
+        return db::getInstance()->Select('SELECT user.*, user_role.id_role FROM `user` INNER JOIN `user_role` ON user.id_user = user_role.id_user WHERE user.user_email = :userEmail AND user.user_password = :pass', ['userEmail' => $userEmail, 'pass' => $pass]);
+    }
+
+    public function newUser($userEmail, $userPass, $userName, $userPhone)
+    {
+        $userPass = self::hashPass($userPass);
+    }
+
+    private function hashPass($userPass)
     {
         $salt = 'jhfdkjdhfTyhdh3365@jdh69kkshhQAAAiyeg'; //соль для паролей
-        $pass .= $salt;
-        $result = hash('sha256', $pass); //шифруем в кодировке sha256
+        $userPass .= $salt;
+        $result = hash('sha256', $userPass); //шифруем в кодировке sha256
         return $result;
     }
 }

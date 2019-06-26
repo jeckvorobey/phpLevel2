@@ -20,4 +20,9 @@ class IndexController extends Controller
     {
         return ['data' => true];
     }
+
+    public function nowUser()
+    {
+        return ['data' => true];
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-//session_start();
+session_start();
 class UserController extends Controller
 {
     public $view = 'user';
@@ -8,17 +8,27 @@ class UserController extends Controller
 
     public function index()
     {
-        if (isset($_POST['entry'])) {
-            $login = (!empty($_POST['login'])) ? trim(strip_tags($_POST['login'])) : '';
-            $pass = (!empty($_POST['pass'])) ? trim(strip_tags($_POST['pass'])) : '';
-            $user = User::auth($login, $pass);
-            if (!$user) {
-                header('Location: ../public/index.php?path=index/authError');
+        if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
+            header('Location: ../public/index.php?path=user');
+        //добавить массив дата
+        } else {
+            if (isset($_POST['entry'])) {
+                $userEmail = (!empty($_POST['userEmail'])) ? trim(strip_tags($_POST['login'])) : '';
+                $pass = (!empty($_POST['pass'])) ? trim(strip_tags($_POST['pass'])) : '';
+                $user = User::auth($userEmail, $pass);
+                if (!$user) {
+                    header('Location: ../public/index.php?path=index/authError');
+                    exit;
+                }
+                $this->title .= ' | Личный кабинет';
+            }
+            if (isset($_POST['reg'])) {
+                header('Location: ../public/index.php?path=user/newUser');
                 exit;
             }
-            $this->title .= ' | Личный кабинет';
-        }
-        if (isset($_POST['reg'])) {
+            if (isset($_POST['save'])) {
+            }
+            header('Location: ../public/index.php?path=index/nowUser');
         }
     }
 
