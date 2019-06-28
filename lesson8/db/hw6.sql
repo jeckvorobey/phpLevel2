@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Июн 13 2019 г., 15:52
+-- Время создания: Июн 28 2019 г., 17:13
 -- Версия сервера: 5.7.26-0ubuntu0.18.04.1
 -- Версия PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -56,9 +56,9 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id_category`, `status`, `name`, `src`, `parent_id`) VALUES
 (1, 1, 'Главная', 'index', 0),
-(2, 1, 'Корзина', 'basket/render', 0),
-(3, 1, 'Каталог', 'catalog/render', 0),
-(4, 0, 'категория 4', '', 0),
+(2, 1, 'Корзина', 'basket', 0),
+(3, 1, 'Каталог', 'catalog', 0),
+(4, 1, 'Личный кабинет', 'user', 0),
 (5, 0, 'категория 5', '', 0),
 (6, 0, 'категория 6', '', 0);
 
@@ -88,7 +88,16 @@ INSERT INTO `goods` (`id_good`, `name`, `price`, `id_category`, `status`) VALUES
 (5, 'Good 5', 2001, 3, 4),
 (6, 'Good 6', 1020, 4, 1),
 (7, 'Good 7', 1, 4, 1),
-(8, 'Good 8', 800, 5, 1);
+(8, 'Good 8', 800, 5, 1),
+(9, 'Good 9', 500, 4, 1),
+(10, 'Good 10', 50, 2, 1),
+(11, 'Good 11', 80, 5, 1),
+(12, 'Good 12', 800, 2, 1),
+(13, 'Good 15', 500, 3, 1),
+(14, 'Good 16', 600, 3, 1),
+(15, 'Good 17', 650, 5, 1),
+(16, 'Good 18', 320, 2, 1),
+(17, 'Good 19', 410, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -146,6 +155,14 @@ CREATE TABLE `role` (
   `role_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Дамп данных таблицы `role`
+--
+
+INSERT INTO `role` (`id_role`, `role_name`) VALUES
+(0, 'user'),
+(1, 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -155,10 +172,18 @@ CREATE TABLE `role` (
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `user_name` varchar(50) NOT NULL,
-  `user_login` varchar(50) NOT NULL,
-  `user_password` varchar(50) NOT NULL,
-  `user_last_action` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `user_email` varchar(50) NOT NULL,
+  `user_password` varchar(100) NOT NULL,
+  `phone` int(10) NOT NULL,
+  `user_date_reg` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id_user`, `user_name`, `user_email`, `user_password`, `phone`, `user_date_reg`) VALUES
+(1, 'admin', 'test@test.ru', '41ebc4d177abc6a5f3dd56f8f557c31d67796e21e9bfe18b28907e0334f08e21', 77777777, '2019-06-28 14:29:40');
 
 -- --------------------------------------------------------
 
@@ -169,8 +194,15 @@ CREATE TABLE `user` (
 CREATE TABLE `user_role` (
   `id_user_role` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_role` int(11) NOT NULL
+  `id_role` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `user_role`
+--
+
+INSERT INTO `user_role` (`id_user_role`, `id_user`, `id_role`) VALUES
+(1, 1, 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -214,7 +246,8 @@ ALTER TABLE `pages`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `id_user` (`id_user`);
+  ADD UNIQUE KEY `id_user` (`id_user`),
+  ADD UNIQUE KEY `user_email` (`user_email`);
 
 --
 -- Индексы таблицы `user_role`
@@ -241,7 +274,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id_good` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_good` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT для таблицы `order_status`
 --
@@ -256,12 +289,12 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

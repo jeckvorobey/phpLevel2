@@ -63,7 +63,7 @@ class UserController extends Controller
                  * если массив с ошибами пустой, то создаем нового пользователя
                  */
                 if (empty($this->errors)) {
-                    print_r($this->data);
+                   // print_r($this->data);
                     User::setEmail($this->data['userEmail']);
                     User::setPass($this->data['pass']);
                     User::setName($this->data['userName']);
