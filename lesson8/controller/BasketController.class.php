@@ -12,7 +12,7 @@ class BasketController extends Controller
         $this->title .= ' | Корзина';
     }
 
-    public function render()
+    public function index()
     {
         if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
             $userId = $_SESSION['id'];

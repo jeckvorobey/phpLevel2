@@ -1,5 +1,6 @@
 {% include 'header.html' %}
 <div class="cabinet">
-    <h2>Вы находитесь в личном кабинете!</h2>
+    <h2>{{ content_data.data[0].user_name }}, Вы находитесь в личном кабинете!</h2>
+    <a href="../public/index.php?path=user/logout">Выход</a>
 </div>
 {% include 'footer.html' %}

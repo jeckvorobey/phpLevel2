@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="style/style.css">
-</head>
+    <head>
+        <title>{{ title }}</title>
+        <link href="style/style.css" rel="stylesheet">
+    </head>
 
-<body>
-    <header>
-        <ul>
-            {% for category in categories %}
-            <li>
-                <a href="../public/index.php?path={{ category.src }}" link="{{ category.id_category }}"
-                    class="category-link">{{ category.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-        <form action="../public/index.php?path=user" class="form-auth" method="POST">
-            <label for="userEmail">Введите ваш e-mail:</label>
-            <input name="userEmail" type="text" value="">
-            <label for="pass">Введите ваш пароль:</label>
-            <input name="pass" type="password" value="">
-            <input name="entry" type="submit" value="Войти">
-            <input name="reg" type="submit" value="Зарегистрироваться">
-        </form>
-    </header>
+    <body>
+        <header>
+            <ul>
+                {% for category in categories %}
+                    <li>
+                        <a href="../public/index.php?path={{ category.src }}" link="{{ category.id_category }}" class="category-link">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form action="../public/index.php?path=user" class="form-auth" method="POST">
+                <label for="userEmail">Введите ваш e-mail:</label><br>
+                <input name="userEmail" type="email" value="{{content_data.data.userEmail}}"><br>
+                <label for="pass">Введите ваш пароль:</label><br>
+                <input name="pass" type="password" value=""><br><br>
+                <input name="entry" type="submit" value="Войти"><br><br>
+                <input name="reg" type="submit" value="Зарегистрироваться">
+            </form>
+        </header>

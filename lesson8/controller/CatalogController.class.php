@@ -5,7 +5,7 @@ class CatalogController extends Controller
     public $view = 'catalog';
     public $title;
 
-    public function render()
+    public function index()
     {
         $this->title .= ' | Каталог';
         $catalog = Good::getGoodsAll();
