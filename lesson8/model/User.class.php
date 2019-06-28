@@ -42,6 +42,17 @@ class User extends Model
         return $this->userPhone;
     }
 
+    /**
+     * Получаем ID пользователя.
+     */
+    public function getUserId($userEmail)
+    {
+        return db::getInstance()->Select('SELECT id_user FROM `user` WHERE user_email = :email', ['email' => $userEmail]);
+    }
+
+    /*
+    * Авторизация пользователя
+    */
     public function auth($userEmail, $userPass)
     {
         $userPass = self::hashPass($userPass);
@@ -49,6 +60,9 @@ class User extends Model
         return db::getInstance()->Select('SELECT user.*, user_role.id_role FROM `user` INNER JOIN `user_role` ON user.id_user = user_role.id_user WHERE user.user_email = :userEmail AND user.user_password = :pass', ['userEmail' => $userEmail, 'pass' => $userPass]);
     }
 
+    /*
+    * Добавляем нового пользователя в БД
+    */
     public function save()
     {
         $query = 'INSERT INTO `user`(`user_name`, `user_email`, `user_password`, `phone`) VALUES (
@@ -66,7 +80,20 @@ class User extends Model
         return true;
     }
 
-    public function hashPass($userPass)
+    /**
+     * присваиваем полномочия пользователя(по умолчанию обычный пользователь).
+     */
+    public function insertUserRole($userId)
+    {
+        db::getInstance()->Query('INSERT INTO `user_role`(`id_user`) VALUES (:userId)', ['userId' => $userId]);
+
+        return true;
+    }
+
+    /*
+    * Шифрование пароля
+    */
+    private function hashPass($userPass)
     {
         $salt = 'jhfdkjdhfTyhdh3365@jdh69kkshhQAAAiyeg'; //соль для паролей
         $userPass .= $salt;
