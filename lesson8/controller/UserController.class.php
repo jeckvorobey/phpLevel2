@@ -8,7 +8,7 @@ class UserController extends Controller
     public $errors = [];
     private $data = [];
 
-    public function index()
+    public function index($data)
     {
         if (isset($_SESSION['user'])) {
             return ['data' => $_SESSION['user']];
@@ -63,7 +63,7 @@ class UserController extends Controller
                  * если массив с ошибами пустой, то создаем нового пользователя
                  */
                 if (empty($this->errors)) {
-                   // print_r($this->data);
+                    // print_r($this->data);
                     User::setEmail($this->data['userEmail']);
                     User::setPass($this->data['pass']);
                     User::setName($this->data['userName']);
