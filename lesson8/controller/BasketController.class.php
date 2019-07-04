@@ -19,23 +19,20 @@ class BasketController extends Controller
         }
         //$this->id_user = 5;
         $basket = Basket::basket_all($this->id_user);
-        print_r($basket);
+        // print_r($basket);
         if (!empty($basket)) {
-            return ['data' => $basket];
+            $totalCount = array_sum(array_column($basket, 'count')); //получаем общее кол-во всех товаров в корзине
+            $totalAmount = array_sum(array_column($basket, 'amount')); //получаем общую сумму всех товаров в корзине
+            return ['data' => $basket, 'totalCount' => $totalCount, 'totalAmount' => $totalAmount];
         } else {
             return ['data' => 0];
         }
     }
 
-    public function addBasket()
+    public function addBasket($id_good)
     {
-        if (isset($_POST['idGood'])) {
-            $good = Good::getGoodInfo($_POST['idGood']);
-            Basket::setIdGood($good['id_good']);
-            Basket::setCount($_POST['quantity']);
-            Basket::setUser($this->id_user);
-            $data = Basket::save();
-            echo json_encode($data);
-        }
+        $data = Basket::addBasket($id_good, $this->id_user);
+
+        return ['data' => $data];
     }
 }

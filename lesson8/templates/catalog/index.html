@@ -22,11 +22,13 @@
                     </strong>
                     {{ item.price }}
                 </p>
-                <button class="btn-buy" value="{{item.id_good}}">В корзину</button>
+                <button class="add-basket" value="{{item.id_good}}" onclick="addBasket({{item.id_good}})">В корзину</button>
             </div>
             <hr>
         {% endfor %}
     </div>
     <button id="more-btn">открыть ещё...</button>
 </div>
+
+<script src="../public/js/catalog.js"></script>
 {% include 'footer.html' %}
