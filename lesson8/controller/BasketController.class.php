@@ -7,23 +7,23 @@ class BasketController extends Controller
     public $title;
     private $id_user;
 
-    public function __construct()
-    {
-        $this->title .= ' | Корзина';
-    }
-
     public function index()
     {
-        if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-            $userId = $_SESSION['id'];
+        $this->title .= ' | Корзина';
+
+        if (isset($_SESSION['user'])) {
+            $dataUser = $_SESSION['user'];
+            $this->id_user = $dataUser[0]['id_user'];
         } else {
-            $userId = session_id();
+            $this->id_user = session_id();
         }
-        $basket = Basket::basket_all($userId);
-        if (!basket) {
-            return ['data' => 0];
+        //$this->id_user = 5;
+        $basket = Basket::basket_all($this->id_user);
+        print_r($basket);
+        if (!empty($basket)) {
+            return ['data' => $basket];
         } else {
-            ['data' => $basket];
+            return ['data' => 0];
         }
     }
 
@@ -32,7 +32,6 @@ class BasketController extends Controller
         if (isset($_POST['idGood'])) {
             $good = Good::getGoodInfo($_POST['idGood']);
             Basket::setIdGood($good['id_good']);
-            Basket::setPrice($good['price']);
             Basket::setCount($_POST['quantity']);
             Basket::setUser($this->id_user);
             $data = Basket::save();

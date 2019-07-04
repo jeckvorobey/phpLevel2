@@ -11,6 +11,8 @@ class UserController extends Controller
     public function index($data)
     {
         if (isset($_SESSION['user'])) {
+            $this->title .= ' | Личный кабинет';
+
             return ['data' => $_SESSION['user']];
         } else {
             $this->data = $_POST;
@@ -21,7 +23,6 @@ class UserController extends Controller
                     header('Location: ../public/index.php?path=index/authError');
                     exit;
                 }
-                $this->title .= ' | Личный кабинет';
                 self::userSession($user);
                 header('Location: ../public/index.php?path=user');
                 exit;
@@ -38,7 +39,7 @@ class UserController extends Controller
     /**
      * создаем нового пользователя.
      */
-    public function newUser()
+    public function newUser($data)
     {
         try {
             $this->title .= ' | Авторизация';

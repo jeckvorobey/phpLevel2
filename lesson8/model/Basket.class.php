@@ -2,7 +2,7 @@
 
 class Basket extends Model
 {
-    protected $id_user = null;
+    protected $id_user;
     protected $id_good;
     protected $price = 0;
     protected $count = 1;
@@ -61,11 +61,10 @@ class Basket extends Model
 
     public function save()
     {
-        $query = 'INSERT INTO basket(id_user, id_good, price, is_in_order) VALUES 
+        $query = 'INSERT INTO basket(id_user, id_good, is_in_order = 0) VALUES 
                   (
-                    '.(($this->id_user) == null ? 'NULL' : $this->id_user).',
+                    '.$this->id_user.',
                     '.$this->id_good.',
-                    '.$this->price.',
                     '.$this->count.',
                     '.$this->is_in_order.'
                   )';
@@ -77,7 +76,7 @@ class Basket extends Model
     public function basket_all($userId)
     {
         return db::getInstance()->Select(
-            'SELECT basket.id_user, basket.count, goods.name, goods.price  FROM `basket`  INNER JOIN `goods` on basket.id_good = goods.id_good WHERE basket.id_user = :userId AND basket.is_in_order = 0',
+            'SELECT basket.id_user, basket.count, goods.name, goods.price, basket.count*goods.price AS amount  FROM `basket`  INNER JOIN `goods` on basket.id_good = goods.id_good WHERE basket.id_user = :userId AND basket.is_in_order = 0',
             ['userId' => $userId]);
     }
 }

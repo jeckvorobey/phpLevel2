@@ -5,7 +5,45 @@
     {% if content_data.data == 0 %}
         <p>Товаров в корзине нет</p>
     {% else %}
-        <p>{{ content_data.data }}</p>
+        {% for item in content_data.data %}
+            <p>
+                <strong>
+                    Наименование:
+                </strong>
+                {{ item.name }}
+            </p>
+            <p>
+                <strong>
+                    Цена:
+                </strong>
+                {{ item.price }}
+            </p>
+            <p>
+                <strong>
+                    Количество:
+                </strong>
+                {{ item.count }}
+            </p>
+            <p>
+                <strong>
+                    Сумма:
+                </strong>
+                {{ item.amount }}
+            </p>
+            <hr>
+        {% endfor %}
+        <p>
+            <strong>
+                Всего товаров:
+            </strong>
+        </p>
+        <p>
+            <strong>
+                На сумму:
+            </strong>
+        </p>
+
     {% endif %}
+
 </div>
 {% include 'footer.html' %}
