@@ -15,7 +15,6 @@ window.onload = () => {
             const response = await fetch(url);
             const data = await response.json();
             renderProduct(data.content_data.data);
-
         } catch {
             err => {
                 console.log('Ошибка: ' + err);
@@ -44,7 +43,10 @@ window.onload = () => {
             const url = `../public/index.php?path=basket/addBasket/${id_good}&a`;
             const response = await fetch(url);
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
+            if (data.content_data.data === 1) {
+                alert('Товар успешно добавлен в корзину');
+            }
         } catch {
             err => {
                 console.log('Ошибка: ' + err);

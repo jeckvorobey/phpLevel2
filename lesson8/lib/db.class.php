@@ -73,4 +73,26 @@ class db
             return $result->fetchAll();
         }
     }
+
+    /**
+     * Выполнить запрос с получением одной строки.
+     */
+    public function SelectOne($query, $params = [])
+    {
+        $result = $this->Query($query, $params);
+        if ($result) {
+            return $result->fetch();
+        }
+    }
+
+    /*
+     * функция для Update, Insert, Delete в БД
+     */
+    public function Request($query, $params = [])
+    {
+        $result = $this->Query($query, $params);
+        if ($result) {
+            return $result->rowCount();
+        }
+    }
 }
