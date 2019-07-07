@@ -2,6 +2,15 @@ window.onload = () => {
     let delBasket = document.querySelectorAll('.rm-good');
     let minusGood = document.querySelectorAll('.minus');
     let plusGood = document.querySelectorAll('.plus');
+    const checkout = document.querySelector('.checkout');
+
+
+    if (checkout !== null) {
+        checkout.addEventListener('click', e => {
+            e.preventDefault();
+            window.location.href = '../public/index.php?path=order';
+        });
+    }
 
     [].forEach.call(minusGood, item => {
         item.addEventListener('click', e => {

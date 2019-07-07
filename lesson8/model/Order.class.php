@@ -1,22 +1,9 @@
 <?php
 
-class Order extends Model {
-    protected static $table = 'orders';
-
-    protected static function setProperties()
+class Order extends Model
+{
+    public function delivery()
     {
-        self::$properties['phone'] = [
-            'type' => 'varchar',
-            'size' => 512
-        ];
-
-        self::$properties['address'] = [
-            'type' => 'varchar',
-            'size' => 512
-        ];
-
-        self::$properties['email'] = [
-            'type' => 'float'
-        ];
+        return db::getInstance()->Select('SELECT * FROM `delivery` WHERE 1');
     }
 }

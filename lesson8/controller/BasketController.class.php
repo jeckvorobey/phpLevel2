@@ -9,6 +9,7 @@ class BasketController extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         if (isset($_SESSION['user'])) {
             $dataUser = $_SESSION['user'];
             $this->id_user = $dataUser[0]['id_user'];
