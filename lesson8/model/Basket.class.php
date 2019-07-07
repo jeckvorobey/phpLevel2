@@ -75,4 +75,15 @@ class Basket extends Model
             ['id_user' => $id_user, 'id_good' => $id_good]
         );
     }
+
+    /**
+     * удаляем корзину пользователя.
+     */
+    public function delBasket($id_user)
+    {
+        return db::getInstance()->Request(
+            'DELETE FROM `basket` WHERE id_user = :id_user',
+            ['id_user' => $id_user]
+        );
+    }
 }

@@ -5,6 +5,7 @@ window.onload = () => {
         e.preventDefault();
         renderForm(e.target.value);
         total(e.target.value);
+        //console.log(t);
     })
 
     /**
@@ -14,7 +15,7 @@ window.onload = () => {
         let form = document.querySelector('.delivery-form');
         let btn = document.querySelector('.done');
         const formElem = document.querySelector('.form-elem');
-        if (+(delivery_id) !== 0) {
+        if (+(delivery_id) !== 1) {
             if (!formElem) {
                 let formElem = document.createElement('div');
                 formElem.className = 'form-elem';
@@ -29,10 +30,10 @@ window.onload = () => {
      * расчет стоимоти доставки и окончательной цены
      */
     total = delivery_price => {
-        let del_price = document.querySelector('.delivery-price').textContent = delivery_price + ' руб.';
-        let total = document.querySelector('.total').textContent = totalSum + +(delivery_price);
+        const deliveryPrice = +(document.querySelector(`[value="${delivery_price}"]`).dataset.delivery_price);
+        document.querySelector('.delivery-price').textContent = deliveryPrice + ' руб.';
+        document.querySelector('.total').textContent = totalSum + deliveryPrice;
         // console.log(totalSum, +(delivery_price));
-
     }
 
 }

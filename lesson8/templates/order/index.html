@@ -49,32 +49,31 @@
         <strong>
             Доставка:
         </strong>
-        <span class="delivery-price">{{ content_data.delivery[0].delivery_price }} руб.</span>
+        <span class="delivery-price">{{ content_data.delivery[0].delivery_price }}
+            руб.</span>
     </p>
     <p>
         <strong>
             Итого:
         </strong>
-        <span class="total">{{ content_data.totalAmount }}</span> руб.
+        <span class="total">{{ content_data.totalAmount }}</span>
+        руб.
     </p>
 </div>
 <hr>
-<div class="wrap-delivery">
+<br>
+<form action="../public/index.php?path=order" class="delivery-form" method="POST">
     <label for="delivery">Выберете способ доставки:</label><br>
     <div>
         <select class="delivery" name="delivery" required>
             {% for item in content_data.delivery %}
-            <option value="{{ item.delivery_price }}" data-delivery_id="{{ item.delivery_id }}">
+            <option value="{{ item.delivery_id }}" data-delivery_price="{{ item.delivery_price }}">
                 {{ item.delivery_name }}</option>
             {% endfor %}
         </select>
-
     </div>
-</div>
-<br>
-<form class="delivery-form" action="../public/index.php?path=order/done" method="POST">
-    <button class="done" type="submit">Подтвердить</button></lable>
+    <br>
+    <h4 style="color: red">{{ content_data.err }}</h4>
+    <button class="done" name="done" type="submit">Подтвердить</button>
 </form>
-
-<script src="../public/js/delivery.js"></script>
-{% include 'footer.html' %}
+<script src="../public/js/delivery.js"></script>{% include 'footer.html' %}

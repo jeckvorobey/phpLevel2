@@ -100,4 +100,13 @@ class User extends Model
         $result = hash('sha256', $userPass); //шифруем в кодировке sha256
         return $result;
     }
+
+    public function newUser($id_user = null, $user_name, $user_email, $user_password = null, $phone, $id_adress = null)
+    {
+        if (!is_null($user_password)) {
+            $user_password = self::hashPass($user_password);
+        }
+
+        return db::getInstance()->Reques();
+    }
 }
