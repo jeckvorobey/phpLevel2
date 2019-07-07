@@ -35,12 +35,12 @@ class OrderController extends Controller
         }
         if (empty($this->errors)) {
             // print_r($this->errors);
-            return ['data' => $basket, 'totalCount' => $totalCount, 'totalAmount' => $totalAmount, 'delivery' => $delivery];
+            return ['data' => $this->basket, 'totalCount' => $totalCount, 'totalAmount' => $totalAmount, 'delivery' => $delivery];
             exit;
         }
         //  print_r($this->errors);
 
-        return ['data' => $basket, 'totalCount' => $totalCount, 'totalAmount' => $totalAmount, 'delivery' => $delivery, 'err' => $this->errors[0]];
+        return ['data' => $this->basket, 'totalCount' => $totalCount, 'totalAmount' => $totalAmount, 'delivery' => $delivery, 'err' => $this->errors[0]];
     }
 
     public function done()
@@ -55,17 +55,25 @@ class OrderController extends Controller
             }
         }
         if (empty($this->errors)) {
-            print_r($this->data);
-            print_r($this->basket);
-            $addOrder = Order::addOrder($this->id_user, 1);
-            if (!$addOrder) {
-                die('Ошибка довавления ордера');
+            try {
+                if (!isset($_SESSION['user'])) {
+                    User::newUser($this->data['name'], $this->data['email'], $user_password = null, $this->data['tel'], $this->data['adress']);
+                    $newIdUser = User::getUserId($this->data['userEmail']);
+                    $this->id_user = $newIdUser['id_user'];
+                    User::insertUserRole($this->id_user);
+                }
+                $addOrder = Order::addOrder($this->id_user, 1);
+                $idOrder = Order::getIdOrder($this->id_user, 1);
+                foreach ($this->basket as $key => $val) {
+                    Order::addOrderGoods($idOrder['id_order'], $this->basket[$key]['id_good'], $this->basket[$key]['count']);
+                }
+                Basket::delBasket($this->id_user);
+
+                header('Location: ../public/index.php?path=order/done');
+                exit;
+            } catch (Exception $e) {
+                echo 'Ошибка: '.$e->getMessage();
             }
-            $idOrder = Order::getIdOrder($this->id_user, 1);
-            foreach ($this->basket as $key => $val) {
-                Order::addOrderGoods($idOrder['id_order'], $this->basket[$key]['id_good'], $this->basket[$key]['count']);
-            }
-            Basket::delBasket($this->id_user);
         }
     }
 }

@@ -47,7 +47,7 @@ class User extends Model
      */
     public function getUserId($userEmail)
     {
-        return db::getInstance()->Select('SELECT id_user FROM `user` WHERE user_email = :email', ['email' => $userEmail]);
+        return db::getInstance()->SelectOne('SELECT id_user FROM `user` WHERE user_email = :email', ['email' => $userEmail]);
     }
 
     /*
@@ -60,34 +60,12 @@ class User extends Model
         return db::getInstance()->Select('SELECT user.*, user_role.id_role FROM `user` INNER JOIN `user_role` ON user.id_user = user_role.id_user WHERE user.user_email = :userEmail AND user.user_password = :pass', ['userEmail' => $userEmail, 'pass' => $userPass]);
     }
 
-    /*
-    * Добавляем нового пользователя в БД
-    */
-    public function save()
-    {
-        $query = 'INSERT INTO `user`(`user_name`, `user_email`, `user_password`, `phone`) VALUES (
-            '.$this->userName.',
-            '.$this->userEmail.',
-            '.$this->userPass.',
-            '.$this->userPhone.'
-        )';
-
-        $res = db::getInstance()->Query($query);
-        if (!$res) {
-            return false;
-        }
-
-        return true;
-    }
-
     /**
      * присваиваем полномочия пользователя(по умолчанию обычный пользователь).
      */
     public function insertUserRole($userId)
     {
-        db::getInstance()->Query('INSERT INTO `user_role`(`id_user`) VALUES (:userId)', ['userId' => $userId]);
-
-        return true;
+        return db::getInstance()->Request('INSERT INTO `user_role`(`id_user`) VALUES (:userId)', ['userId' => $userId]);
     }
 
     /*
@@ -101,12 +79,15 @@ class User extends Model
         return $result;
     }
 
-    public function newUser($id_user = null, $user_name, $user_email, $user_password = null, $phone, $id_adress = null)
+    /**
+     * добавляем нового пользователя в БД.
+     */
+    public function newUser($user_name, $user_email, $user_password = null, $phone, $user_adress = null)
     {
         if (!is_null($user_password)) {
             $user_password = self::hashPass($user_password);
         }
 
-        return db::getInstance()->Reques();
+        return db::getInstance()->Request('INSERT INTO `user`(`user_name`, `user_email`, `user_password`, `phone`, `user_adress`) VALUES (:user_name, :user_email, :user_password, :phone, :user_adress)', ['user_name' => $user_name, 'user_email' => $user_email, 'user_password' => $user_password, 'phone' => $phone, 'user_adress' => $user_adress]);
     }
 }

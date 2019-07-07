@@ -8,7 +8,7 @@ class UserController extends Controller
     public $errors = [];
     private $data = [];
 
-    public function index($data)
+    public function index()
     {
         if (isset($_SESSION['user'])) {
             $this->title .= ' | Личный кабинет';
@@ -42,7 +42,7 @@ class UserController extends Controller
     public function newUser($data)
     {
         try {
-            $this->title .= ' | Авторизация';
+            $this->title .= ' | Регистрация';
             $this->data = $_POST;
             if (isset($this->data['save'])) {
                 /*
@@ -65,11 +65,7 @@ class UserController extends Controller
                  */
                 if (empty($this->errors)) {
                     // print_r($this->data);
-                    User::setEmail($this->data['userEmail']);
-                    User::setPass($this->data['pass']);
-                    User::setName($this->data['userName']);
-                    User::setPhone($this->data['userPhone']);
-                    $newUser = User::save();
+                    $newUser = User::newUser($this->data['userName'], $this->data['userEmail'], $this->data['pass'], $this->data['userPhone'], $user_adress = null);
                     if ($newUser == false) {
                         $this->errors[] = 'Пользователь с данным email уже существует!';
 
@@ -78,8 +74,8 @@ class UserController extends Controller
                     }
                     //ID нового пользователя
                     $idNewUser = User::getUserId($this->data['userEmail']);
-                    //присваиваем полномочия новому пользователю по уполчанию(Обычный пользователь)
-                    User::insertUserRole($idNewUser);
+                    // присваиваем полномочия новому пользователю по уполчанию(Обычный пользователь)
+                    User::insertUserRole($idNewUser['id_user']);
                     //сразуже авторизовываем пользователя
                     $user = User::auth($this->data['userEmail'], $this->data['userPass']);
                     self::userSession($user);
@@ -90,7 +86,7 @@ class UserController extends Controller
                 exit;
             }
         } catch (Exception $e) {
-            echo 'Ошибка: '.$e->getMessage().'\n';
+            echo 'Ошибка: '.$e->getMessage();
         }
     }
 
