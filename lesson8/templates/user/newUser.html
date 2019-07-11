@@ -1,0 +1,14 @@
+{% include "header.html" %}
+<h4 style="color: red">{{ content_data.err[0] }}</h4>
+<form action="../public/index.php?path=user/newUser" class="form-reg" method="POST">
+    <label for="userName">Введите Ф.И.О.:</label>
+    <input name="userName" type="text" value="{{ content_data.data.userName }}">
+    <label for="userPhone">Введите ваш телефон:</label>
+    <input name="userPhone" type="tel" value="{{ content_data.data.userPhone }}">
+    <label for="userEmail">Введите ваш e-mail:</label>
+    <input name="userEmail" type="email" value="{{ content_data.data.userEmail }}">
+    <label for="pass">Придумайте пароль:</label>
+    <input name="pass" type="password" value="">
+    <input name="save" type="submit" value="Сохранить">
+</form>
+{% include "footer.html" %}

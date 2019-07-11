@@ -1,0 +1,34 @@
+{% include 'header.html' %}
+<div class="catalog">
+    <h1>Каталог</h1>
+    <div class="wrap-product">
+        {% for item in content_data.data %}
+            <div class="product" data-id="{{item.id_good}}">
+                <p>
+                    <strong>
+                        ID товара:
+                    </strong>
+                    {{ item.id_good }}
+                </p>
+                <p>
+                    <strong>
+                        Наименование:
+                    </strong>
+                    {{ item.name }}
+                </p>
+                <p>
+                    <strong>
+                        Цена:
+                    </strong>
+                    {{ item.price }}
+                </p>
+                <button class="add-basket" value="{{item.id_good}}" onclick="addBasket({{item.id_good}})">В корзину</button>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+    <button id="more-btn">открыть ещё...</button>
+</div>
+
+<script src="../public/js/catalog.js"></script>
+{% include 'footer.html' %}

@@ -1,0 +1,79 @@
+{% include 'header.html' %}
+<h2>Оформление заказа:</h2>
+<!-- обертка товаров -->
+<div class="wrap">
+    {% for item in content_data.data %}
+    <p>
+        <strong>
+            Наименование:
+        </strong>
+        <span>{{ item.name }}</span>
+    </p>
+    <p>
+        <strong>
+            Цена:
+        </strong>
+        <span>{{ item.price }}</span>
+    </p>
+    <p>
+        <strong>
+            Количество:
+        </strong>
+        <span class="count" data-quantity="{{item.id_good}}">{{ item.count }}</span>
+    </p>
+    <p>
+        <strong>
+            Сумма:
+        </strong>
+        <span class="summa" data-sum="{{item.id_good}}">{{ item.amount }}</span>
+    </p>
+    <hr>
+    {% endfor %}
+</div>
+<div class="wrap-total">
+    <p>
+        <strong>
+            Всего товаров:
+        </strong>
+        <span class="total-count">{{ content_data.totalCount }}
+            шт.</span>
+    </p>
+    <p>
+        <strong>
+            На сумму:
+        </strong>
+        <span class="total-sum">{{ content_data.totalAmount }}
+            руб.</span>
+    </p>
+    <p>
+        <strong>
+            Доставка:
+        </strong>
+        <span class="delivery-price">{{ content_data.delivery[0].delivery_price }}
+            руб.</span>
+    </p>
+    <p>
+        <strong>
+            Итого:
+        </strong>
+        <span class="total">{{ content_data.totalAmount }}</span>
+        руб.
+    </p>
+</div>
+<hr>
+<br>
+<form action="../public/index.php?path=order" class="delivery-form" method="POST">
+    <label for="delivery">Выберете способ доставки:</label><br>
+    <div>
+        <select class="delivery" name="delivery" required>
+            {% for item in content_data.delivery %}
+            <option value="{{ item.delivery_id }}" data-delivery_price="{{ item.delivery_price }}">
+                {{ item.delivery_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+    <h4 style="color: red">{{ content_data.err }}</h4>
+    <button class="done" name="done" type="submit">Подтвердить</button>
+</form>
+<script src="../public/js/delivery.js"></script>{% include 'footer.html' %}

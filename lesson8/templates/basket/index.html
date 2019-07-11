@@ -1,0 +1,56 @@
+{% include 'header.html' %}
+
+<h1>Корзина</h1>
+<div class="basket">
+    {% if content_data.data == 0 %}
+    <p>Товаров в корзине нет</p>
+    {% else %}
+    {% for item in content_data.data %}
+    <p>
+        <strong>
+            Наименование:
+        </strong>
+        <span>{{ item.name }}</span>
+    </p>
+    <p>
+        <strong>
+            Цена:
+        </strong>
+        <span>{{ item.price }}</span>
+    </p>
+    <p>
+        <strong>
+            Количество:
+        </strong>
+        <input class="minus" type="button" data-id_good="{{item.id_good}}" value="-">
+        <span class="count" data-quantity="{{item.id_good}}">{{ item.count }}</span>
+        <input class="plus" type="button" data-id_good="{{item.id_good}}" value="+">
+    </p>
+    <p>
+        <strong>
+            Сумма:
+        </strong>
+        <span class="summa" data-sum="{{item.id_good}}">{{ item.amount }}</span>
+    </p>
+    <button class="rm-good" value="{{item.id_good}}">Удалить из корзины</button>
+    <hr>
+    {% endfor %}
+    <p>
+        <strong>
+            Всего товаров:
+        </strong>
+        <span class="total-count">{{ content_data.totalCount }} шт.</span>
+    </p>
+    <p>
+        <strong>
+            На сумму:
+        </strong>
+        <span class="total-sum">{{ content_data.totalAmount }} руб.</span>
+    </p>
+    <button class="checkout" data-dev="checkout"> Оформить заказ</button>
+    {% endif %}
+
+</div>
+
+<script src="../public/js/basket.js"></script>
+{% include 'footer.html' %}
